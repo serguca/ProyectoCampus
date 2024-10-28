@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContenidoController;
+use App\Http\Controllers\ContentController;
 
 
-Route::get('/contenido/{id}', [ContenidoController::class, 'index']) -> name('contenido.index');
+Route::get('/contenido/{id}', [ContentController::class, 'index']) -> name('contenido.index');
 
 
