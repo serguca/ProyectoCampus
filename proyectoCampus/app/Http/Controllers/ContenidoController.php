@@ -22,9 +22,6 @@ class ContenidoController extends Controller
 
     //Guarda en la base de datos el contenido del formulario
     public function store(Request $request){
-        //Tambien funcionaria con:
-        //Note::create($request->all());
-
         Contenido::create($request->all());
 
         return redirect()->route('contenido.index');
