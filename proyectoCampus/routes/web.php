@@ -10,6 +10,8 @@ Route::get('/', function () {
 Route::get('/contenido', [ContenidoController::class, 'index'])->name('contenido.index');
 Route::get('/contenido/create', [ContenidoController::class, 'create'])->name('contenido.create');
 Route::post('/contenido/store', [ContenidoController::class, 'store'])->name('contenido.store');
+Route::get('/note/edit/{contenido}', [ContenidoController::class, 'edit'])->name('contenido.edit');
+
 
 Route::middleware([
     'auth:sanctum',
