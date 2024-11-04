@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contenido;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContenidoRequest;
 
 class ContenidoController extends Controller
 {
@@ -21,7 +22,7 @@ class ContenidoController extends Controller
     }
 
     //Guarda en la base de datos el contenido del formulario
-    public function store(Request $request){
+    public function store(ContenidoRequest $request){
         Contenido::create($request->all());
 
         return redirect()->route('contenido.index');
@@ -32,7 +33,7 @@ class ContenidoController extends Controller
         return view('contenido.edit', compact('contenido'));
     }
 
-    public function update(Request $request, Contenido $contenido){
+    public function update(ContenidoRequest $request, Contenido $contenido){
         $contenido->update($request->all());
         return redirect()->route('contenido.index');
     }
