@@ -8,7 +8,16 @@
 
     <label>Titulo:</label>
     <input type="text" name='titulo' value="{{ $contenido->titulo }}" />
+
+    @error('titulo')
+    <p style="color:crimson">{{$message}}</p>
+    @enderror
+
     <label>Descripcion:</label>
     <input type="text" name='descripcion' value="{{ $contenido->descripcion }}" />
     <input type="submit" value="Update"/>
+
+    @error('descripcion')
+    <p style="color:crimson">{{$message}}</p>
+    @enderror
 @endsection
