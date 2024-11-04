@@ -31,4 +31,9 @@ class ContenidoController extends Controller
         //$Contenido = Contenido::find($contenido);
         return view('contenido.edit', compact('contenido'));
     }
+
+    public function update(Request $request, Contenido $contenido){
+        $contenido->update($request->all());
+        return redirect()->route('contenido.index');
+    }
 }
