@@ -36,4 +36,13 @@ class ContenidoController extends Controller
         $contenido->update($request->all());
         return redirect()->route('contenido.index');
     }
+
+    public function show(Contenido $contenido){
+        return view('contenido.show', compact('contenido'));
+    }
+
+    public function destroy(Contenido $contenido){
+        $contenido->delete();
+        return redirect()->route('contenido.index');
+    }
 }
