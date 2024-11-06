@@ -43,20 +43,21 @@ class ContenidoController extends Controller
     }
 
     public function edit($contenido){
-        if(!Auth::user()->esProfesor){
+        $contenido = Contenido::find($contenido);//usamos un producto que va a ser el producto editado y le damos el valor del nuevo
+        if(!Auth::user()->esProfesor || !($contenido -> user_id == Auth::id())){
             return redirect()->route('contenido.index');
         } else {
-            $contenido = Contenido::find($contenido);//usamos un producto que va a ser el producto editado y le damos el valor del nuevo
             return view('contenido.edit', compact('contenido'));
         }
 
     }
 
     public function update(ContenidoRequest $request, $contenido){
-        if(!Auth::user()->esProfesor){
+        $user = Auth::user();
+        $contenido = Contenido::find($contenido);//Encontramos el producto que vamos a actualizar
+        if(!Auth::user()->esProfesor || !($contenido -> user_id ==  Auth::id())){
             return redirect()->route('contenido.index');
         } else {
-            $contenido = Contenido::find($contenido);//Encontramos el producto que vamos a actualizar
             $contenido -> titulo = $request->titulo;//Le damos los valores del titulo
             $contenido -> descripcion = $request->descripcion;//Le damos los valores de la descripcion
             $contenido->save();//Guardamos los resultados
@@ -70,10 +71,11 @@ class ContenidoController extends Controller
     }
 
     public function destroy($contenido){
-        if(!Auth::user()->esProfesor){
+        $user = Auth::user();
+        $contenido = Contenido::find($contenido);//Encontramos el producto que vamos a actualizar
+        if(!Auth::user()->esProfesor || !($contenido -> user_id ==  Auth::id())){
             return redirect()->route('contenido.index');
         }else {
-            $contenido = Contenido::find($contenido);
             $contenido->delete();
             return redirect()->route('contenido.index');
         }
