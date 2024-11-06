@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContenidoController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return redirect()->route('login');});
@@ -36,5 +37,5 @@ Route::middleware([
     Route::put('/contenido/update/{contenido}', [ContenidoController::class, 'update'])->name('contenido.update');
     Route::get('/contenido/show/{contenido}', [ContenidoController::class, 'show'])->name('contenido.show');
     Route::delete('/contenido/destroy/{contenido}', [ContenidoController::class, 'destroy'])->name('contenido.destroy');
-
+    Route::post('/user/toggle-profesor/{user}', [UserController::class, 'toggleProfesor'])->name('user.toggleProfesor');
 });

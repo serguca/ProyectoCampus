@@ -5,6 +5,18 @@
 
 <ul>
     <p>Bienvenido, {{ $user->name }}</p> <!-- Muestra el nombre del usuario -->
+    @if($user -> isProfesor)
+        <p>Usted es profesor.</p>
+    @else
+        <p>Usted no es profesor.</p>
+    @endif
+
+    <form method="POST" action="{{ route('user.toggleProfesor', $user -> id) }}">
+        @csrf
+        <button type="submit" class="btn btn-primary">
+            {{ $esProfesor ? 'Cambiar a Estudiante' : 'Cambiar a Profesor' }}
+        </button>
+    </form>
 
     @forelse($contenidos as $contenido)
         <li><a href="{{ route('contenido.show', $contenido -> id)}}">{{$contenido -> titulo}}</a> | <a href="{{route('contenido.edit', $contenido ->id )}}">EDIT</a>

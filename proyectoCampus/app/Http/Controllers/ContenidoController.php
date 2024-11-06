@@ -16,7 +16,8 @@ class ContenidoController extends Controller
     public function index(){
         $contenidos = Contenido::all();
         $user = Auth::user(); // Obtén el usuario autenticado
-        return view('contenido.index', compact('contenidos', 'user'));
+        $esProfesor = $user->esProfesor; // Accede a la variable esProfesor
+        return view('contenido.index', compact('contenidos', 'user', 'esProfesor'));
     }
 
     //Devuelve la vista create
