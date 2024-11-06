@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Contenido;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContenidoRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ContenidoController extends Controller
 {
@@ -13,7 +15,8 @@ class ContenidoController extends Controller
     //Devuelve la vista index (la principal)
     public function index(){
         $contenidos = Contenido::all();
-        return view('contenido.index', compact('contenidos'));
+        $user = Auth::user(); // Obtén el usuario autenticado
+        return view('contenido.index', compact('contenidos', 'user'));
     }
 
     //Devuelve la vista create
