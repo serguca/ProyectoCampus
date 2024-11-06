@@ -22,7 +22,11 @@ class ContenidoController extends Controller
 
     //Devuelve la vista create
     public function create(){
-        return view('contenido.create');
+        if(!Auth::user()->esProfesor){
+            return redirect()->route('contenido.index');
+        } else {
+            return view('contenido.create');
+        }
     }
 
     //Guarda en la base de datos el contenido del formulario
@@ -38,22 +42,41 @@ class ContenidoController extends Controller
         }
     }
 
-    public function edit(Contenido $contenido){
-        //$Contenido = Contenido::find($contenido);
-        return view('contenido.edit', compact('contenido'));
+    public function edit($contenido){
+        if(!Auth::user()->esProfesor){
+            return redirect()->route('contenido.index');
+        } else {
+            $contenido = Contenido::find($contenido);//usamos un producto que va a ser el producto editado y le damos el valor del nuevo
+            return view('contenido.edit', compact('contenido'));
+        }
+
     }
 
-    public function update(ContenidoRequest $request, Contenido $contenido){
-        $contenido->update($request->all());
-        return redirect()->route('contenido.index');
+    public function update(ContenidoRequest $request, $contenido){
+        if(!Auth::user()->esProfesor){
+            return redirect()->route('contenido.index');
+        } else {
+            $contenido = Contenido::find($contenido);//Encontramos el producto que vamos a actualizar
+            $contenido -> titulo = $request->titulo;//Le damos los valores del titulo
+            $contenido -> descripcion = $request->descripcion;//Le damos los valores de la descripcion
+            $contenido->save();//Guardamos los resultados
+            return redirect()->route('contenido.index');//Lo redigimos a la pagina
+        }
+
     }
 
     public function show(Contenido $contenido){
         return view('contenido.show', compact('contenido'));
     }
 
-    public function destroy(Contenido $contenido){
-        $contenido->delete();
-        return redirect()->route('contenido.index');
+    public function destroy($contenido){
+        if(!Auth::user()->esProfesor){
+            return redirect()->route('contenido.index');
+        }else {
+            $contenido = Contenido::find($contenido);
+            $contenido->delete();
+            return redirect()->route('contenido.index');
+        }
+
     }
 }
