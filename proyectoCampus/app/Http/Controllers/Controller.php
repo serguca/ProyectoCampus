@@ -8,7 +8,7 @@ abstract class Controller
 {
     public function index(){
         $user = Auth::user(); // Obtén el usuario autenticado
-        $esProfesor = $user->esProfesor; // Accede a la variable esProfesor
-        return view('contenido.index', compact('user', 'esProfesor'));
+        $isProfesor = $user->isProfesor; // Accede a la variable esProfesor
+        return view('contenido.index', compact('user', 'isProfesor'));
     }
 }

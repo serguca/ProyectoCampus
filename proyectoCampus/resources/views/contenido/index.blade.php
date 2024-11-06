@@ -5,7 +5,7 @@
 
 <ul>
     <p>Bienvenido, {{ $user->name }}</p> <!-- Muestra el nombre del usuario -->
-    @if($user -> isProfesor)
+    @if($user -> esProfesor)
         <p>Usted es profesor.</p>
     @else
         <p>Usted no es profesor.</p>

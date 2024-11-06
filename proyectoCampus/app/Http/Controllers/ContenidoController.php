@@ -27,9 +27,15 @@ class ContenidoController extends Controller
 
     //Guarda en la base de datos el contenido del formulario
     public function store(ContenidoRequest $request){
-        Contenido::create($request->all());
-
-        return redirect()->route('contenido.index');
+        $user = Auth::user();
+        if(!$user->esProfesor){
+            return redirect()->route('contenido.index');
+        } else {
+            $contenido = new Contenido($request->all());
+            $contenido->user_id = Auth::id();
+            $contenido->save();
+            return redirect()->route('contenido.index');
+        }
     }
 
     public function edit(Contenido $contenido){
