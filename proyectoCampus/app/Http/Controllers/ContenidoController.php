@@ -16,8 +16,7 @@ class ContenidoController extends Controller
     public function index(){
         $contenidos = Contenido::all();
         $user = Auth::user(); // Obtén el usuario autenticado
-        $esProfesor = $user->esProfesor; // Accede a la variable esProfesor
-        return view('contenido.index', compact('contenidos', 'user', 'esProfesor'));
+        return view('contenido.index', compact('contenidos', 'user'));
     }
 
     //Devuelve la vista create
@@ -53,7 +52,7 @@ class ContenidoController extends Controller
     }
 
     public function update(ContenidoRequest $request, $contenido){
-        $user = Auth::user();
+        //$user = Auth::user();
         $contenido = Contenido::find($contenido);//Encontramos el producto que vamos a actualizar
         if(!Auth::user()->esProfesor || !($contenido -> user_id ==  Auth::id())){
             return redirect()->route('contenido.index');
@@ -71,7 +70,7 @@ class ContenidoController extends Controller
     }
 
     public function destroy($contenido){
-        $user = Auth::user();
+        //$user = Auth::user();
         $contenido = Contenido::find($contenido);//Encontramos el producto que vamos a actualizar
         if(!Auth::user()->esProfesor || !($contenido -> user_id ==  Auth::id())){
             return redirect()->route('contenido.index');

@@ -14,13 +14,13 @@
     <form method="POST" action="{{ route('user.toggleProfesor', $user -> id) }}">
         @csrf
         <button type="submit" class="btn btn-primary">
-            {{ $esProfesor ? 'Cambiar a Estudiante' : 'Cambiar a Profesor' }}
+            {{ $user -> esProfesor ? 'Cambiar a Estudiante' : 'Cambiar a Profesor' }}
         </button>
     </form>
 
     @forelse($contenidos as $contenido)
-        <li><a href="{{ route('contenido.show', $contenido -> id)}}">{{$contenido -> titulo}}</a>
         @if($user -> esProfesor && $contenido -> user_id == $user -> id)
+        <li><a href="{{ route('contenido.show', $contenido -> id)}}">{{$contenido -> titulo}}</a>
             <a href="{{route('contenido.edit', $contenido ->id )}}">EDIT</a>
             <form method="POST" action="{{ route('contenido.destroy', $contenido->id) }}">
             @csrf
@@ -28,7 +28,10 @@
             <input type="submit" value="DELETE">
         </li>
         </form>
-        @else
+        @elseif(!$user->esProfesor)
+        <li><a href="{{ route('contenido.show', $contenido -> id)}}">{{$contenido -> titulo}}</a></li>
+
+
         @endif
 
         @empty

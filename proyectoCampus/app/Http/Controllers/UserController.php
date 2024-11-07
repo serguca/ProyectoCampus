@@ -11,12 +11,14 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function toggleProfesor(User $user, Request $request)
+    public function toggleProfesor(User $user)
     {
         $user->esProfesor = !$user->esProfesor; // Cambia el estado de isProfesor
         $user->save();
         return redirect()->route('contenido.index');
     }
+
+
 
 /*
        $user->forceFill([
