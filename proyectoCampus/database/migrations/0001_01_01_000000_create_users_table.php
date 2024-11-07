@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+            $table->boolean('esProfesor')->default(false);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -47,5 +48,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropColumn('isProfesor');
     }
 };

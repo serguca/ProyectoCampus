@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->text('descripcion');
+            $table->foreignId('user_id')->constrained(); // Agrega esta línea para la relación con el usuario
             $table->timestamps();
         });
     }
