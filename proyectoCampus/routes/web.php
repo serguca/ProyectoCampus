@@ -38,4 +38,5 @@ Route::middleware([
     Route::get('/contenido/show/{contenido}', [ContenidoController::class, 'show'])->name('contenido.show');
     Route::delete('/contenido/destroy/{contenido}', [ContenidoController::class, 'destroy'])->name('contenido.destroy');
     Route::post('/user/toggle-profesor/{user}', [UserController::class, 'toggleProfesor'])->name('user.toggleProfesor');
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
 });

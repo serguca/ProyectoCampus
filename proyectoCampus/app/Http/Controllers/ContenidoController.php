@@ -52,9 +52,9 @@ class ContenidoController extends Controller
     }
 
     public function update(ContenidoRequest $request, $contenido){
-        //$user = Auth::user();
+        $user = Auth::user();
         $contenido = Contenido::find($contenido);//Encontramos el producto que vamos a actualizar
-        if(!Auth::user()->esProfesor || !($contenido -> user_id ==  Auth::id())){
+        if(!Auth::user()->esProfesor || !($contenido -> user_id ==  Auth::id()) ){
             return redirect()->route('contenido.index');
         } else {
             $contenido -> titulo = $request->titulo;//Le damos los valores del titulo
@@ -70,7 +70,7 @@ class ContenidoController extends Controller
     }
 
     public function destroy($contenido){
-        //$user = Auth::user();
+        $user = Auth::user();
         $contenido = Contenido::find($contenido);//Encontramos el producto que vamos a actualizar
         if(!Auth::user()->esProfesor || !($contenido -> user_id ==  Auth::id())){
             return redirect()->route('contenido.index');
