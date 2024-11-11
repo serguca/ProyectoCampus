@@ -9,7 +9,7 @@
     @endif
     <div class="centrarLista">
         <ul>
-            <p class="bienvenido">Bienvenido, {{ $user->name }}</p> <!-- Muestra el nombre del usuario -->
+            <p class="bienvenido">Bienvenido: <br> {{ $user->name }}</p> <!-- Muestra el nombre del usuario -->
 
             @if($user -> esProfesor)
                 <p class="tipoUsuario">Usted es profesor.</p>
@@ -65,7 +65,32 @@
 
 
 <style>
+    p{
+        text-align: center
+    }
+    .centrarLista{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 20px;
+    
+    }
+    li{
+        list-style: none;
+        background-color: #f2f2f200;
+        border-radius: 5px;
+        filter: drop-shadow(0 0 0.75rem #000000);
+     
+    }
+    a{
+        text-decoration: none;
+        color:whitesmoke;
+    
+       
 
-<style>
+
+    }
+</style>
 @endsection
 
