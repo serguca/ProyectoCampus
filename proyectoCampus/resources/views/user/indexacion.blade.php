@@ -3,6 +3,7 @@
 @section('content')
 <div class="usuarios">
 @foreach($users as $user)
+    @if(Auth::id() != $user->id)
     <a>{{ $user->name }}</a>
     <form class="cambio" method="POST" action="{{ route('user.invitarAlumno', ['contenido' => $contenido->id, 'user' => $user->id]) }}">
         @csrf
@@ -10,6 +11,7 @@
             {{ 'Invitar' }}
         </button>
     </form>
+    @endif
 @endforeach
 </div>
 
