@@ -50,7 +50,7 @@ class ContenidoController extends Controller
 
     public function edit($contenido){
         $contenido = Contenido::find($contenido);//usamos un producto que va a ser el producto editado y le damos el valor del nuevo
-        if(!Auth::user()->esProfesor || !($contenido -> user_id == Auth::id())){
+        if(!Auth::user()->esProfesor || !($contenido -> user -> id == Auth::id())){
             return redirect()->route('contenido.index');
         } else {
             return view('contenido.edit', compact('contenido'));
