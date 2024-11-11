@@ -49,9 +49,6 @@ class ContenidoController extends Controller
     }
 
     public function edit($contenido){
-
-
-
         $contenido = Contenido::find($contenido);//usamos un producto que va a ser el producto editado y le damos el valor del nuevo
         if(!Auth::user()->esProfesor || !($contenido -> user_id == Auth::id())){
             return redirect()->route('contenido.index');
@@ -76,7 +73,8 @@ class ContenidoController extends Controller
     }
 
     public function show(Contenido $contenido){
-        return view('contenido.show', compact('contenido'));
+        $user = Auth::user();
+        return view('contenido.show', compact('contenido', 'user'));
     }
 
     public function destroy($contenido){

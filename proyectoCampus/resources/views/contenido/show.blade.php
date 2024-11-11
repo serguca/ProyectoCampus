@@ -5,13 +5,19 @@
 
     <div class="contenido-back">
         <a class="back" href="{{ route('contenido.index') }}">BACK</a>
+        @if($user -> esProfesor)
+        <a class="back" href="{{ route('user.indexacion', ['contenido' => $contenido->id]) }}">AÑADIR ALUMNOS</a>
+        @endif
     </div>
-    
+
+
     <div class="Contenido-contenido">
         <h1>Nombre contenido: <br>{{$contenido -> titulo}}</h1>
         <h2>Descripción:</h2>
         <p>{{$contenido -> descripcion}} <br> </p>
     </div>
+
+
 
 </div>
 
@@ -42,13 +48,13 @@
         background: linear-gradient(to right, #ffffffd4, #fffffff5);
         padding: 20px;
     }
-    
+
 
     h1{
         font-weight: bold;
         text-align: center;
         font-size: 30px;
-        
+
     }
 
     h2{
@@ -58,7 +64,7 @@
 
     p{
        text-align: start
-      
+
     }
 
 

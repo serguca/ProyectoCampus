@@ -2,9 +2,11 @@
 
 @section('content')
 <div class="page">
-    <div class="botonCreate">
-        <a  class="create" href="{{ route('contenido.create') }}">Create new contenido</a>
-    </div>
+    @if($user->esProfesor)
+        <div class="botonCreate">
+            <a  class="create" href="{{ route('contenido.create') }}">Create new contenido</a>
+        </div>
+    @endif
     <div class="centrarLista">
         <ul>
             <p class="bienvenido">Bienvenido, {{ $user->name }}</p> <!-- Muestra el nombre del usuario -->

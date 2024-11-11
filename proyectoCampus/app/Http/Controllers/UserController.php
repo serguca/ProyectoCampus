@@ -12,9 +12,14 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function indexacion($contenido){
-        $users = User::all();
         $contenido = Contenido::find($contenido);
-        return view('user.indexacion', compact('users', 'contenido'));
+        if(Auth::user()->id == $contenido->user->id){
+            $users = User::all();
+            $myUser = Auth::user();
+            return view('user.indexacion', compact('users', 'contenido', 'myUser'));
+        } else {
+            return redirect()->route('contenido.index');
+        }
     }
 
     public function toggleProfesor(User $user)
@@ -25,10 +30,12 @@ class UserController extends Controller
     }
 
     public function invitarAlumno($contenido, $user){ //el user es el alumno
-        $contenido = Contenido::find($contenido);
-        $user = User::find($user);
-        $contenido->users()->attach($user);
-        return redirect()->route('user.indexacion', $contenido);
+        if(Auth::user()->id == $user->id){
+            $contenido = Contenido::find($contenido);
+            $user = User::find($user);
+            $contenido->users()->attach($user);
+            return redirect()->route('user.indexacion', $contenido);
+        }
     }
 
 
