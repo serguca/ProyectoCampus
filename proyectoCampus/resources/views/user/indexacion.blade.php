@@ -13,6 +13,8 @@
     </form>
     @endif
 @endforeach
+<a class="back" href="{{ route('contenido.index') }}">BACK</a>
+
 </div>
 
 <style>
