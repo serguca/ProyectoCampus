@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="usuarios">
+@if(Auth::id()==$contenido->user_id)
 @foreach($users as $user)
     @if(Auth::id() != $user->id)
     <a>{{ $user->name }}</a>
@@ -13,6 +14,7 @@
     </form>
     @endif
 @endforeach
+@endif
 <a class="back" href="{{ route('contenido.index') }}">BACK</a>
 
 </div>
