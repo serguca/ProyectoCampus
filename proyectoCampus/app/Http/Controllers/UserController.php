@@ -25,7 +25,11 @@ class UserController extends Controller
     }
 
     public function invitarAlumno($contenido, $user){ //el user es el alumno
+        $profesor = Auth::user();
         $contenido = Contenido::find($contenido);
+        if($profesor->id != $contenido->user_id){
+            return redirect()->route('contenido.index');
+        }
         $user = User::find($user);
         $contenido->users()->attach($user);
         return redirect()->route('user.indexacion', $contenido);
