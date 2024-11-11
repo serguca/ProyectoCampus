@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -68,7 +69,10 @@ class User extends Authenticatable
         ];
     }
 
-    public function contenidos(): HasMany{
+    public function contenido(): HasMany{
         return $this -> hasMany(Contenido::class);
     }
-}
+
+    public function contenidos(): BelongsToMany{
+        return $this -> BelongsToMany(Contenido::class);
+    }}
