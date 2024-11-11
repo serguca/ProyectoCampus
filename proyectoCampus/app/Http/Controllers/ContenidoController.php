@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ContenidoRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ContenidoController extends Controller
 {
@@ -14,8 +15,14 @@ class ContenidoController extends Controller
 
     //Devuelve la vista index (la principal)
     public function index(){
-        $contenidos = Contenido::all();
+        //$estaInvitado = DB::table('contenido_user')->where('user_id', Auth::user()->id)->where('contenido_id', $contenido->id)->first();
         $user = Auth::user(); // Obtén el usuario autenticado
+        //$contenidos = Contenido::all();
+        if($user->esProfesor){
+            $contenidos = $user->contenido;
+        } else {
+            $contenidos = $user->contenidos;
+        }
         return view('contenido.index', compact('contenidos', 'user'));
     }
 
@@ -42,6 +49,9 @@ class ContenidoController extends Controller
     }
 
     public function edit($contenido){
+
+
+
         $contenido = Contenido::find($contenido);//usamos un producto que va a ser el producto editado y le damos el valor del nuevo
         if(!Auth::user()->esProfesor || !($contenido -> user_id == Auth::id())){
             return redirect()->route('contenido.index');

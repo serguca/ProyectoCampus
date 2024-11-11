@@ -25,7 +25,7 @@ class ContenidoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'titulo' => 'required|max:255|min:5',
+            'titulo' => 'required|max:40|min:5',
             'descripcion' => 'required|max:255|min:5'
         ];
     }

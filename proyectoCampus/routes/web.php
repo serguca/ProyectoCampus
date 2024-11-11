@@ -38,4 +38,6 @@ Route::middleware([
     Route::get('/contenido/show/{contenido}', [ContenidoController::class, 'show'])->name('contenido.show');
     Route::delete('/contenido/destroy/{contenido}', [ContenidoController::class, 'destroy'])->name('contenido.destroy');
     Route::post('/user/toggle-profesor/{user}', [UserController::class, 'toggleProfesor'])->name('user.toggleProfesor');
+    Route::get('/user/{contenido}', [UserController::class, 'indexacion'])->name('user.indexacion'); //anyadir alumno a contenido
+    Route::post('/user/invitarAlumno/{contenido}/{user}', [UserController::class, 'invitarAlumno'])->name('user.invitarAlumno');
 });
