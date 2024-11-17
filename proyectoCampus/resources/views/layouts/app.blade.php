@@ -11,7 +11,7 @@
 <body>
     
     <div class="top">
-        <h2 class="titulo">Digitanos Virtual</h2>
+        <h2 class="titulo">Digitan Virtual</h2>
         <p class="titulo">Hecha por Sergio, Jose Román, Jose Guerrero y Bruno</p>
     </div>
     <div class="separacion"></div>
